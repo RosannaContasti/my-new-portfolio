@@ -1,22 +1,14 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import AnimatedText from "@/src/components/AnimatedText";
+import { useLocale } from "@/src/hooks/useLocale";
 
 export default function TitlePage() {
   const t = useTranslations("HomePage");
-  const router = useRouter();
-  const locale = useLocale();
-
-  const changeLanguage = (locale: "en" | "es") => {
-    document.cookie = `locale=${locale}; path=/`;
-    router.refresh();
-  };
-
+  const { locale, setLocale } = useLocale();
   const text = "ROSANNA";
 
   const letters = text.split("");
@@ -52,28 +44,23 @@ export default function TitlePage() {
       <div className="flex w-full justify-between p-6 font-bold">
         {/* Language switch */}
         <div className="flex gap-2 items-center text-[clamp(1rem,1.5vw,1.5rem)]">
-          {/* <button
-            onClick={() => changeLanguage("es")}
-            className="cursor-pointer transition-opacity hover:opacity-70"
+          <button
+            onClick={() => setLocale("en")}
+            className={`px-3 py-1 transition-all ${locale === "en"
+              ? "text-white opacity-100"
+              : "text-gray-400 opacity-40 hover:opacity-70"
+              }`}
           >
-            {t("languages.es")}
+            EN
           </button>
-
-          <span className="opacity-60">/</span>
-
           <button
-            onClick={() => changeLanguage("en")}
-            className="cursor-pointer transition-opacity hover:opacity-70"
+            onClick={() => setLocale("es")}
+            className={`px-3 py-1 transition-all ${locale === "es"
+              ? "text-white opacity-100"
+              : "text-gray-400 opacity-40 hover:opacity-70"
+              }`}
           >
-            {t("languages.en")}
-          </button> */}
-          <button
-            onClick={() => changeLanguage("es")}
-            className={`transition-opacity ${
-              locale === "es" ? "opacity-100" : "opacity-40 hover:opacity-70"
-            }`}
-          >
-            {t("languages.es")}
+            ES
           </button>
         </div>
 
