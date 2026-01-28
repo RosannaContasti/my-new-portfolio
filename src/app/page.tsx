@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
+import { useRef } from "react";
 import TitlePage from "./title/page";
 import AboutSection from "./about/page";
 import ProjectsCoverPage from "./projects/page";
@@ -21,55 +21,112 @@ export default function HomePage() {
   const isMobile = useIsMobile();
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll({
+  // Scroll progress para desktop (horizontal)
+  const { scrollYProgress: desktopProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Transformación suavizada con easing
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["0%", `-${(SECTIONS - 1) * 100}%`],
+  // Scroll progress para mobile (vertical)
+  const { scrollYProgress: mobileProgress } = useScroll();
+
+  // Desktop: transformación horizontal con spring suave
+  const x = useSpring(
+    useTransform(
+      desktopProgress,
+      [0, 1],
+      ["0%", `-${(SECTIONS - 1) * 100}%`]
+    ),
     {
-      clamp: true, // Evita que se pase del límite
+      stiffness: 100,
+      damping: 30,
+      restDelta: 0.001,
+      mass: 0.5
     }
   );
 
-  // 🔹 MOBILE → scroll vertical normal
+  // Barra de progreso aesthetic para ambos
+  const progressBar = useSpring(
+    isMobile ? mobileProgress : desktopProgress,
+    {
+      stiffness: 100,
+      damping: 30,
+      restDelta: 0.001
+    }
+  );
+
+  // 🔹 MOBILE → scroll vertical aesthetic
   if (isMobile) {
     return (
-      <main className="flex flex-col">
-        <TitlePage />
-        <AboutSection />
-        <ProjectsCoverPage />
-        <SirenasAppPage />
-        <SirenasWebAppPage />
-        <CRMSirenasPage />
-        <TechnologiesCover />
-        <LibrariesPage />
-        <ContactCover />
-        <ContactInfoPage />
-      </main>
+      <>
+        {/* Barra de progreso aesthetic */}
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500 z-50 origin-left shadow-lg shadow-purple-500/50"
+          style={{ scaleX: progressBar }}
+        />
+
+        {/* Indicadores laterales (opcional) */}
+        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-3">
+          {[...Array(10)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="w-2 h-2 rounded-full bg-white/30 backdrop-blur-sm"
+              whileHover={{ scale: 1.5, backgroundColor: "rgba(255,255,255,0.8)" }}
+              transition={{ type: "spring", stiffness: 400 }}
+            />
+          ))}
+        </div>
+
+        <main className="
+          h-screen
+          overflow-y-scroll
+          snap-y snap-mandatory
+          scroll-smooth
+          scrollbar-hide
+        ">
+          <section className="h-screen snap-start snap-always">
+            <TitlePage />
+          </section>
+          <section className="h-screen snap-start snap-always">
+            <AboutSection />
+          </section>
+          <section className="h-screen snap-start snap-always">
+            <ProjectsCoverPage />
+          </section>
+          <section className="h-screen snap-start snap-always">
+            <SirenasAppPage />
+          </section>
+          <section className="h-screen snap-start snap-always">
+            <SirenasWebAppPage />
+          </section>
+          <section className="h-screen snap-start snap-always">
+            <CRMSirenasPage />
+          </section>
+          <section className="h-screen snap-start snap-always">
+            <TechnologiesCover />
+          </section>
+          <section className="h-screen snap-start snap-always">
+            <LibrariesPage />
+          </section>
+          <section className="h-screen snap-start snap-always">
+            <ContactCover />
+          </section>
+          <section className="h-screen snap-start snap-always">
+            <ContactInfoPage />
+          </section>
+        </main>
+      </>
     );
   }
 
+  // 🔹 DESKTOP → scroll horizontal aesthetic
   return (
     <>
+      {/* Barra de progreso aesthetic para desktop */}
       <motion.div
-        style={{
-          scaleX: scrollYProgress,
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 10,
-          transformOrigin: "0%",
-          backgroundColor: "#fcb9c0",
-          zIndex: 50,
-        }}
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500 z-50 origin-left shadow-lg shadow-purple-500/30"
+        style={{ scaleX: progressBar }}
       />
-
       <section
         ref={containerRef}
         className="relative bg-black"
@@ -78,7 +135,12 @@ export default function HomePage() {
         <div className="sticky top-0 h-screen overflow-hidden">
           <motion.div
             className="flex h-full"
-            style={{ width: `${SECTIONS * 100}vw`, x }}
+            style={{ 
+              width: `${SECTIONS * 100}vw`, 
+              x,
+              // Suavizado adicional
+              willChange: "transform"
+            }}
           >
             <TitlePage />
             <AboutSection />

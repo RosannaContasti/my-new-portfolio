@@ -1,9 +1,39 @@
 {
   "HomePage": {
-     "languages": {
+    "languages": {
       "es": "spanish",
       "en": "english"
     },
     "title": "software developer"
+  },
+  "AboutPage": {
+    "greeting": "HI, I'M",
+    "name": "ROSANNA",
+    "bio": "Software developer passionate about creating exceptional digital experiences. With experience in full-stack web development and interface design, I specialize in turning ideas into functional and attractive products."
+  },
+  "ProjectsPage": {
+    "coverTitle": ["FEATURED", "PROJECTS"],
+    "sirenasApp": {
+      "title": "SIRENAS\nPROJECT\nAPP",
+      "description": "The Sirenas Project App was developed to offer users a smooth and intuitive mobile experience, facilitating access to key content, functionalities, and communications of the project."
+    },
+    "sirenasWeb": {
+      "title": "WEB APP SIRENAS.TV",
+      "description": "Complete web platform for streaming and multimedia content management. Built with modern technologies to ensure an optimal and scalable user experience."
+    },
+    "crmSirenas": {
+      "title": "SIRENAS PROJECT CRM",
+      "description": "CRM for customer and sales management at Sirenas, a company dedicated to selling marine products. This CRM allows users to manage contacts, sales opportunities, interaction tracking, and report generation to optimize the sales process."
+    }
+  },
+  "TechnologiesPage": {
+    "coverTitle": ["SKILLS", "TECHNOLOGIES"]
+  },
+  "ContactPage": {
+    "coverTitle": ["LET'S WORK", "TOGETHER!"],
+    "contactTitle": "CONTACT",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email"
   }
 }

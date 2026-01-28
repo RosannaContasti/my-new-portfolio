@@ -18,7 +18,14 @@ export function useLocale() {
   const setLocale = (newLocale: string) => {
     localStorage.setItem("locale", newLocale);
     setLocaleState(newLocale);
-    window.location.reload(); 
+    
+    // Disparar evento personalizado para que el layout recargue
+    window.dispatchEvent(new Event("localeChange"));
+    
+    // Recargar la página para aplicar cambios
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   };
 
   return { locale, setLocale };

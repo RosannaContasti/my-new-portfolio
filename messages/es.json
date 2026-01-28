@@ -4,7 +4,36 @@
       "es": "español",
       "en": "inglés"
     },
-  
     "title": "desarrolladora de software"
+  },
+  "AboutPage": {
+    "greeting": "HOLA, SOY",
+    "name": "ROSANNA",
+    "bio": "Desarrolladora de software apasionada por crear experiencias digitales excepcionales. Con experiencia en desarrollo web full-stack y diseño de interfaces, me especializo en convertir ideas en productos funcionales y atractivos."
+  },
+  "ProjectsPage": {
+    "coverTitle": ["PROYECTOS", "DESTACADOS"],
+    "sirenasApp": {
+      "title": "PROYECTO\nSIRENAS\nAPP",
+      "description": "La App de Proyecto Sirenas fue desarrollada para ofrecer a los usuarios una experiencia móvil fluida e intuitiva, facilitando el acceso a contenidos, funcionalidades y comunicaciones clave del proyecto."
+    },
+    "sirenasWeb": {
+      "title": "WEB APP SIRENAS.TV",
+      "description": "Plataforma web completa para el streaming y gestión de contenido multimedia. Desarrollada con tecnologías modernas para garantizar una experiencia de usuario óptima y escalable."
+    },
+    "crmSirenas": {
+      "title": "CRM PROYECTO SIRENAS",
+      "description": "CRM para la gestión de clientes y ventas de Sirenas, una empresa dedicada a la venta de productos marinos. Este CRM permite a los usuarios administrar contactos, oportunidades de venta, seguimiento de interacciones y generación de informes para optimizar el proceso de ventas."
+    }
+  },
+  "TechnologiesPage": {
+    "coverTitle": ["SKILLS", "TECHNOLOGIES"]
+  },
+  "ContactPage": {
+    "coverTitle": ["¡TRABAJEMOS", "JUNTOS!"],
+    "contactTitle": "CONTACTO",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email"
   }
 }

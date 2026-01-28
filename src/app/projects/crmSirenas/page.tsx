@@ -1,6 +1,10 @@
+"use client";
+import { useTranslations } from "next-intl";
+
 export default function CRMSirenasPage() {
+  const t = useTranslations("ProjectsPage.crmSirenas");
   return (
-    <section className="flex flex-row shrink-0 w-screen h-screen  justify-between bg-white">
+    <section className="relative flex flex-row shrink-0 w-screen h-screen justify-between bg-white overflow-hidden isolate">
       <div className="flex flex-col  items-start w-1/2 h-full text-[#fcb9c0]">
         <h1
           className="
@@ -30,11 +34,7 @@ export default function CRMSirenasPage() {
       </div>
 
       <span className="m-auto text-4xl font-bold text-center max-w-3xl px-4">
-        CRM para la gestión de clientes y ventas de Sirenas, una empresa
-        dedicada a la venta de productos marinos. Este CRM permite a los
-        usuarios administrar contactos, oportunidades de venta, seguimiento de
-        interacciones y generación de informes para optimizar el proceso de
-        ventas.
+        {t("description")}
       </span>
     </section>
   );

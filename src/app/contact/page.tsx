@@ -1,7 +1,12 @@
+"use client";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
-const ContactCover = () => (
-  <section className=" h-screen shrink-0 w-screen flex flex-col items-center justify-around text-6xl bg-white  text-black font-semibold p-8">
+const ContactCover = () => {
+  const t = useTranslations("ContactPage");
+  
+  return (
+  <section className="relative h-screen shrink-0 w-screen flex flex-col items-center justify-around text-6xl bg-white text-black font-semibold p-8 overflow-hidden isolate">
     <div className="flex w-screen justify-between pr-26 pl-26 text-[clamp(1rem,1.5vw,2rem)]">
       <span>Rosanna Contasti</span>
       <span>9</span>
@@ -38,8 +43,8 @@ const ContactCover = () => (
           items-center
         "
       >
-        <span>¡TRABAJEMOS</span>
-        <span>JUNTOS!</span>
+        <span>{t("coverTitle.0")}</span>
+        <span>{t("coverTitle.1")}</span>
       </div>
     </div>
     <div className="flex w-screen  justify-between pr-26 pl-26 text-[clamp(1rem,1.5vw,2rem)]">
@@ -47,6 +52,7 @@ const ContactCover = () => (
       <span>{`${":)"}`}</span>
     </div>
   </section>
-);
+  );
+};
 
 export default ContactCover;

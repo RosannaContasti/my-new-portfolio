@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 
 export default function ContactInfoPage() {
-  const t = useTranslations("HomePage");
+  const t = useTranslations("ContactPage");
   //   const router = useRouter();
   //   const locale = useLocale();
 
@@ -11,7 +11,7 @@ export default function ContactInfoPage() {
   //   };
 
   return (
-    <section className=" h-screen shrink-0 w-screen flex flex-col items-center justify-around text-6xl bg-[#000000]  text-black font-semibold p-8">
+    <section className="relative h-screen shrink-0 w-screen flex flex-col items-center justify-around text-6xl bg-[#000000] text-black font-semibold p-8 overflow-hidden isolate">
       <div
         className=" flex 
         flex-col 
@@ -27,10 +27,10 @@ export default function ContactInfoPage() {
     md:tracking-[-0.08em]
     lg:tracking-[-0.15em]"
         >
-          CONTACTO
+          {t("contactTitle")}
         </span>
-        <span>githube</span>
-        <span>linkedin</span>
+        <span>{t("github")}</span>
+        <span>{t("linkedin")}</span>
       </div>
     </section>
   );

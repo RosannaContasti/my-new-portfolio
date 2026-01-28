@@ -2,7 +2,7 @@ import { LibrariesCard } from "@/src/components/librariesCard";
 import { skills } from "../mocks/libraries";
 
 const LibrariesPage = () => (
-  <section className="min-h-screen shrink-0 w-screen flex flex-col items-center  text-6xl bg-[#fcb9c0] justify-between text-black font-semibold p-8">
+  <section className="relative min-h-screen shrink-0 w-screen flex flex-col items-center text-6xl bg-[#fcb9c0] justify-between text-black font-semibold p-8 overflow-hidden isolate">
     <div
       className="
     min-h-screen
